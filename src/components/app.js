@@ -29,14 +29,14 @@ export default class App extends Component {
 		if(this.state.isTablet){
 			return (
 				<div id="app">
-					<Ipad/ >
+					<Ipad />
 				</div>   				
 			);
 		} 
 		else {
 			return (
 				<div id="app">
-					<Iphone/ >
+					<Iphone />
 				</div>
 			);
 		}

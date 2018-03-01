@@ -23,13 +23,13 @@ export default class Iphone extends Component {
 	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var url = "http://api.wunderground.com/api/c78f1a13d2ca6971/conditions/q/UK/London.json";
+		let url = "http://api.wunderground.com/api/c78f1a13d2ca6971/conditions/q/UK/London.json";
 		$.ajax({
-			url: url,
+			url,
 			dataType: "jsonp",
 			success : this.parseResponse,
-			error : function(req, err){ console.log('API call failed ' + err); }
-		})
+			error(req, err){ console.log('API call failed ' + err); }
+		});
 		// once the data grabbed, hide the button
 		this.setState({ display: false });
 	}
@@ -48,7 +48,7 @@ export default class Iphone extends Component {
 					<span class={ tempStyles }>{ this.state.temp }</span>
 				</div>
 				<div class={ style.details }></div>
-				<div class= { style_iphone.container }> 
+				<div class= { style_iphone.container }>
 					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/ > : null }
 				</div>
 			</div>
@@ -56,15 +56,15 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		var location = parsed_json['current_observation']['display_location']['city'];
-		var temp_c = parsed_json['current_observation']['temp_c'];
-		var conditions = parsed_json['current_observation']['weather'];
+		let location = parsed_json['current_observation']['display_location']['city'];
+		let temp_c = parsed_json['current_observation']['temp_c'];
+		let conditions = parsed_json['current_observation']['weather'];
 
 		// set states for fields so they could be rendered later on
 		this.setState({
 			locate: location,
 			temp: temp_c,
 			cond : conditions
-		});      
+		});
 	}
 }

@@ -25,16 +25,6 @@ export default class Iphone extends Component {
 	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-<<<<<<< HEAD
-		let url = "http://api.wunderground.com/api/c78f1a13d2ca6971/conditions/q/UK/London.json";
-		$.ajax({
-			url,
-			dataType: "jsonp",
-			success : this.parseResponse,
-			error(req, err){ console.log('API call failed ' + err); }
-		});
-		// once the data grabbed, hide the button
-=======
 		const url = "http://api.wunderground.com/api/c78f1a13d2ca6971/conditions/q/UK/London.json";
 		// $.ajax({
 		// 	url: url,
@@ -43,7 +33,6 @@ export default class Iphone extends Component {
 		// 	error : function(req, err){ console.log('API call failed ' + err); }
 		// })
 		// // once the data grabbed, hide the button
->>>>>>> 947404dd899074da877ce65c99b0a1598a55f27a
 		this.setState({ display: false });
 		this.setState( {
 			locate: "London",

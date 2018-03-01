@@ -37,7 +37,7 @@ export default class Iphone extends Component {
 		this.setState( {
 			locate: "London",
 			temp: "-3",
-			cond: "FUCKING MENTAL M8"
+			cond: "loadsa snoe"
 		});
 	}
 
@@ -51,8 +51,9 @@ export default class Iphone extends Component {
 			<div class={ style.container }>
 				<div class={ style.header }>
 					<div class={ style.city }>{ this.state.locate }</div>
-					<div class={ style.conditions }>{ this.state.cond }</div>
+				
 					<span class={ tempStyles }>{ this.state.temp }</span>
+					<div class={ style.conditions }>{ this.state.cond }</div>
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>

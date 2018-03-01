@@ -43,15 +43,16 @@ export default class Ipad extends Component {
 		return (
 			<div class={ style.container }>
 				<div class={ style.header }>
-					<div class={ style.city }>{ this.state.currentCity }</div>
-					<div class={ style.country }>{ this.state.currentCountry }</div>
+					<div class={ style.city }>{ this.state.locate }</div>
+				
+					<span class={ tempStyles }>{ this.state.temp }</span>
 					<div class={ style.conditions }>{ this.state.cond }</div>
-					<span class={ style.temperature }>{ this.state.temp }</span>
 				</div>
 				<div class={ style.details }></div>
-				<div class={ style_ipad.container }>
-					{ this.state.display ? <Button class={ style_ipad.button } clickFunction={ this.fetchWeatherData }/ > : null }
+				<div class= { style_iphone.container }>
+					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/ > : null }
 				</div>
+				<Status />
 			</div>
 		);
 	}

@@ -8,6 +8,8 @@ import $ from 'jquery';
 // import the Button component
 import Button from '../button';
 
+import Status from '../status';
+
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -23,6 +25,7 @@ export default class Iphone extends Component {
 	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
+<<<<<<< HEAD
 		let url = "http://api.wunderground.com/api/c78f1a13d2ca6971/conditions/q/UK/London.json";
 		$.ajax({
 			url,
@@ -31,7 +34,22 @@ export default class Iphone extends Component {
 			error(req, err){ console.log('API call failed ' + err); }
 		});
 		// once the data grabbed, hide the button
+=======
+		const url = "http://api.wunderground.com/api/c78f1a13d2ca6971/conditions/q/UK/London.json";
+		// $.ajax({
+		// 	url: url,
+		// 	dataType: "jsonp",
+		// 	success : this.parseResponse,
+		// 	error : function(req, err){ console.log('API call failed ' + err); }
+		// })
+		// // once the data grabbed, hide the button
+>>>>>>> 947404dd899074da877ce65c99b0a1598a55f27a
 		this.setState({ display: false });
+		this.setState( {
+			locate: "London",
+			temp: "-3",
+			cond: "FUCKING MENTAL M8"
+		});
 	}
 
 	// the main render method for the iphone component
@@ -51,6 +69,7 @@ export default class Iphone extends Component {
 				<div class= { style_iphone.container }>
 					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/ > : null }
 				</div>
+				<Status />
 			</div>
 		);
 	}

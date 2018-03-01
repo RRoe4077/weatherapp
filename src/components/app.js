@@ -26,20 +26,6 @@ export default class App extends Component {
 		A render method to display the required Component on screen (iPhone or iPad) : selected by checking component's isTablet state
 	*/
 	render(){
-<<<<<<< HEAD
-		if  (this.state.isTablet){
-			return (
-				<div id="app">
-					<Ipad/ >
-				</div>
-			);
-		}
-		
-		return (
-				<div id="app">
-					<Iphone/ >
-				</div>
-=======
 		if (this.state.isTablet){
 			return (
 				<div id="app">
@@ -52,7 +38,6 @@ export default class App extends Component {
 				<div id="app">
 					<Iphone />
 				</div>
->>>>>>> 947404dd899074da877ce65c99b0a1598a55f27a
 		);
 		
 	}

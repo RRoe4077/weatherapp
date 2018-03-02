@@ -10,6 +10,8 @@ import Button from '../button';
 
 import Status from '../status';
 
+import Geolocator from "../location";
+
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -57,6 +59,7 @@ export default class Iphone extends Component {
 					{ this.state.display ? <Button class={ style_iphone.button } name={"Fetch Weather"} clickFunction={ this.fetchWeatherData }/ > : null }
 				</div>
 				<Status />
+				<Geolocator />
 			</div>
 		);
 	}

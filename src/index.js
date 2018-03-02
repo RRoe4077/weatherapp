@@ -3,8 +3,6 @@
 import { h, render } from 'preact';
 import './style';
 
-require('dotenv').config()
-
 let root;
 function init() {
 	let App = require('./components/app').default;

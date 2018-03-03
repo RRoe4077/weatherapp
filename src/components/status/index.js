@@ -7,7 +7,7 @@ export default class Status extends Component{
 	render(){
 		return (
             <div class={style.container}>
-                <h1> Not Safe to Fly </h1>
+                <h1> Not Safe to Fly! </h1>
             </div>
 		);
 	}

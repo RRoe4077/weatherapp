@@ -24,7 +24,7 @@ export default class Iphone extends Component {
 		this.setState({ display: true });
 	}
 
-	// a call to fetch weather data via wunderground
+	// a call to fetch weather data via openweathermap
 	fetchWeatherData = () => {
 		// API URL with a structure of : 
 		const url = `http://api.openweathermap.org/data/2.5/weather?q=${this.state.location},uk&units=${this.state.units}&appid=174eb67985ff52097d96a14736dc0014`;
@@ -37,7 +37,9 @@ export default class Iphone extends Component {
 		// // once the data grabbed, hide the button
 		this.setState({ display: false });
 	}
-
+	componentDidMount = () => {
+		this.fetchWeatherData();
+	}
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
@@ -47,14 +49,16 @@ export default class Iphone extends Component {
 		return (
 			<div class={ style.container }>
 				<div class={ style.header }>
-					<div class={ style.city }>{ this.state.locate }</div>
+					<div class={ style.city }>{ this.state.location }</div>
 				
-					<span class={ tempStyles }>{ this.state.temp }</span>
-					<div class={ style.conditions }>{ this.state.cond }</div>
+					<span class={ tempStyles }>{ this.state.temp_c }°C</span>
+					<div class={ style.conditions }>Conditions: { this.state.condition }</div>
+					<div class={ style.conditions }>Description: { this.state.description}</div>
+					<div class={ style.conditions }>Wind: { this.state.windspeed }km/h</div>
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>
-					{ this.state.display ? <Button class={ style_iphone.button } name={"Fetch Weather"} clickFunction={ this.fetchWeatherData }/ > : null }
+					
 				</div>
 				<Status />
 			</div>
@@ -66,13 +70,16 @@ export default class Iphone extends Component {
 		let location = parsed_json.name;
 		let temp_c = parsed_json.main.temp;
 		let weather = parsed_json.weather;
-		let condition = weather[0].description;
+		let condition = weather[0].main;
+		let description = weather[0].description;
 		let windspeed = parsed_json.wind.speed;
 		// set states for fields so they could be rendered later on
 		this.setState({
-			locate: location,
-			temp: temp_c,
-			cond : condition
+			location,
+			temp_c,
+			condition,
+			windspeed,
+			description
 		});
 	}
 }

@@ -10,6 +10,9 @@ import Button from '../button';
 
 import Status from '../status';
 
+
+import Geolocator from "../location";
+
 import weatherkey from '../../weatherKey';
 
 export default class Iphone extends Component {
@@ -73,6 +76,7 @@ export default class Iphone extends Component {
 					
 				</div>
 				<Status />
+				<Geolocator />
 			</div>
 		);
 	}

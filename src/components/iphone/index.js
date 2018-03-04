@@ -10,7 +10,10 @@ import Button from '../button';
 
 import Status from '../status';
 
+
 import Geolocator from "../location";
+
+import weatherkey from '../../weatherKey';
 
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
@@ -19,17 +22,26 @@ export default class Iphone extends Component {
 	constructor(props){
 		super(props);
 		// temperature state
-		this.state.temp = "";
-		this.state.location="London";
 		this.state.units="metric";
+	
 		// button display state
-		this.setState({ display: true });
+		this.setState({ display: true, weather: {
+			location: "London",
+			temp_c:"",
+			condition:"",
+			windspeed:"",
+			description:"",
+			weatherid:0,
+		},
+			icon: "",
+			background: ""
+		});
 	}
 
-	// a call to fetch weather data via wunderground
+	// a call to fetch weather data via openweathermap
 	fetchWeatherData = () => {
 		// API URL with a structure of : 
-		const url = `http://api.openweathermap.org/data/2.5/weather?q=${this.state.location},uk&units=${this.state.units}&appid=174eb67985ff52097d96a14736dc0014`;
+		const url = `http://api.openweathermap.org/data/2.5/weather?q=${this.state.weather.location},uk&units=${this.state.units}&appid=174eb67985ff52097d96a14736dc0014`;
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
@@ -39,24 +51,29 @@ export default class Iphone extends Component {
 		// // once the data grabbed, hide the button
 		this.setState({ display: false });
 	}
-
+	componentDidMount = () => {
+		this.fetchWeatherData();
+	}
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
-		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
-		
+		const weather = this.state.weather;
+		const tempStyles = `${style.temperature} ${style.filled}`;
+		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;
 		// display all weather data
 		return (
-			<div class={ style.container }>
+			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
 				<div class={ style.header }>
-					<div class={ style.city }>{ this.state.locate }</div>
+					<div class={ style.city }>{ weather.location }</div>
 				
-					<span class={ tempStyles }>{ this.state.temp }</span>
-					<div class={ style.conditions }>{ this.state.cond }</div>
+					<span class={ tempStyles }>{ weather.temp_c }°C</span>
+					<div class={ style.conditions }>{ weather.condition } </div>
+					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>
+					<div class={ style.conditions }>Wind: { weather.windspeed } m/s</div>
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>
-					{ this.state.display ? <Button class={ style_iphone.button } name={"Fetch Weather"} clickFunction={ this.fetchWeatherData }/ > : null }
+					
 				</div>
 				<Status />
 				<Geolocator />
@@ -65,17 +82,27 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		console.log(JSON.stringify(parsed_json.name));
+		// console.log(JSON.stringify(parsed_json));
 		let location = parsed_json.name;
 		let temp_c = parsed_json.main.temp;
 		let weather = parsed_json.weather;
-		let condition = weather[0].description;
+		let condition = weather[0].main;
+		let description = weather[0].description;
+		let weatherid = weather[0].id;
+		let icon = weather[0].icon;
 		let windspeed = parsed_json.wind.speed;
 		// set states for fields so they could be rendered later on
 		this.setState({
-			locate: location,
-			temp: temp_c,
-			cond : condition
+			weather: {
+				location,
+				temp_c,
+				condition,
+				windspeed,
+				description,
+				weatherid
+			},
+			icon,
+			background: weatherkey.findBackgroundById(weatherid)
 		});
 	}
 }

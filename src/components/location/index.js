@@ -7,8 +7,8 @@ export default class Geolocator extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			lat: "Lat",
-			long: "Long",
+			lat: "Latitude",
+			long: "Longitude",
 		};
 	}
 

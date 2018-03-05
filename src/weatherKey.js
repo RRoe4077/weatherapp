@@ -2,17 +2,17 @@ const findBackgroundById =(weatherId) => {
     if (weatherId < 233 && weatherId > 199) 
         return "#374647";
     if (weatherId < 322 && weatherId > 299) 
-        return "#9cd1d3";
+        return "#B6D4D5";
     if (weatherId < 532 && weatherId > 499) 
-        return "#56a3a6";
+        return "#649EA0";
     if (weatherId < 623 && weatherId > 599) 
-        return "#fbeae2";
+        return "#DEDBDA";
     if (weatherId < 782 && weatherId > 699) 
-        return "#beafa5";
+        return "#BBBBB5";
     if (weatherId < 805 && weatherId > 800)
-        return "#c7e9ea";
+        return "#BCE4E1";
     if (weatherId == 800)
-        return "#a3cef1";
+        return "#B1EAE9";
 }
 const ids = {
     "200":{

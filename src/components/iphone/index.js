@@ -10,6 +10,9 @@ import Button from '../button';
 
 import Status from '../status';
 
+
+import Geolocator from "../location";
+
 import weatherkey from '../../weatherKey';
 
 export default class Iphone extends Component {
@@ -63,16 +66,18 @@ export default class Iphone extends Component {
 				<div class={ style.header }>
 					<div class={ style.city }>{ weather.location }</div>
 				
-					<span class={ tempStyles }>{ weather.temp_c }°C</span>
+					<span class={ tempStyles }>{ weather.temp_c }</span>
+					<div class={ style.conditions }>Wind: { weather.windspeed } m/s</div>
 					<div class={ style.conditions }>{ weather.condition } </div>
 					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>
-					<div class={ style.conditions }>Wind: { weather.windspeed } m/s</div>
+					
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>
 					
 				</div>
 				<Status />
+				<Geolocator />
 			</div>
 		);
 	}

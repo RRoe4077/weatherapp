@@ -10,10 +10,11 @@ import Button from '../button';
 
 import Status from '../status';
 
-
 import Geolocator from "../location";
 
 import weatherkey from '../../weatherKey';
+
+import FutureWeather from '../future_weather';
 
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
@@ -58,7 +59,6 @@ export default class Iphone extends Component {
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const weather = this.state.weather;
-		const tempStyles = `${style.temperature} ${style.filled}`;
 		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;
 		// display all weather data
 		return (
@@ -66,7 +66,7 @@ export default class Iphone extends Component {
 				<div class={ style.header }>
 					<div class={ style.city }>{ weather.location }</div>
 				
-					<span class={ tempStyles }>{ weather.temp_c }</span>
+					<span>{ weather.temp_c }°C</span>
 					<div class={ style.conditions }>Wind: { weather.windspeed } m/s</div>
 					<div class={ style.conditions }>{ weather.condition } </div>
 					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>
@@ -78,6 +78,7 @@ export default class Iphone extends Component {
 				</div>
 				<Status />
 				<Geolocator />
+				<FutureWeather />
 			</div>
 		);
 	}
@@ -92,6 +93,7 @@ export default class Iphone extends Component {
 		let weatherid = weather[0].id;
 		let icon = weather[0].icon;
 		let windspeed = parsed_json.wind.speed;
+		let winddir = parsed_json.wind.deg;
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {
@@ -105,6 +107,8 @@ export default class Iphone extends Component {
 			icon,
 			background: weatherkey.findBackgroundById(weatherid)
 		});
+
+		//console.log(parsed_json);
 	}
 }
 

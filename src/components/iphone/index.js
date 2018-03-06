@@ -84,7 +84,6 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		// console.log(JSON.stringify(parsed_json));
 		let location = parsed_json.name;
 		let temp_c = parsed_json.main.temp;
 		let weather = parsed_json.weather;

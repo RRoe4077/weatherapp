@@ -14,6 +14,8 @@ import Geolocator from "../location";
 
 import weatherkey from '../../weatherKey';
 
+import moment from 'moment';
+
 export default class FutureWeather extends Component {
 //var Iphone = React.createClass({
 
@@ -24,14 +26,16 @@ export default class FutureWeather extends Component {
 		this.state.units="metric";
 	
 		// button display state
-		this.setState({ display: true, weather: {
-			location: "London",
-			temp_c:"",
-			condition:"",
-			windspeed:"",
-			description:"",
-			weatherid:0,
-		},
+		this.setState({ 
+			display: true, 
+			weather: {
+				location: "London",
+				temp_c:"",
+				condition:"",
+				windspeed:"",
+				description:"",
+				weatherid:0,
+			},
 			icon: "",
 			background: ""
 		});
@@ -63,8 +67,7 @@ export default class FutureWeather extends Component {
 		return (
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
 				<div class={ style.header }>
-					{/* <div class={ style.city }>{ weather.location }</div> */}
-				
+					<div>{ moment().format('dddd') }</div>
 					<span class={ tempStyles }>{ weather.temp_c }°C</span>
 					<div>{ weather.windspeed } m/s</div>
 					<div>{ weather.condition } </div>
@@ -80,11 +83,12 @@ export default class FutureWeather extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-        let fiveday = parsed_json.list;
+		var moment = require('moment');
+		let fiveday = parsed_json.list;
         fiveday.forEach((day, index) => {
-            console.log(day);
+            //console.log(day);
         });
-        let weather = fiveday[1].weather;
+		let weather = fiveday[1].weather;
         let condition = fiveday[1].main;
         let temp_c = condition.temp;
 		let weatherid = weather[0].id;

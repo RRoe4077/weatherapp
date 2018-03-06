@@ -8,6 +8,10 @@ import Status from '../status';
 
 import FutureWeather from '../future_weather';
 
+import style_iphone from '../button/style_iphone';
+
+import weatherkey from '../../weatherKey';
+
 export default class weatherComponent extends Component{
 
 	constructor(props){
@@ -17,14 +21,15 @@ export default class weatherComponent extends Component{
 			this.state.units="metric";
 
 			// button display state
-			this.setState({ display: true, weather: {
-				location: "No Location Found",
-				temp_c:"",
-				condition:"",
-				windspeed:"",
-				description:"",
-				weatherid:0,
-			},
+			this.setState({
+				weather: {
+					location: "No Location Found",
+					temp_c:"",
+					condition:"",
+					windspeed:"",
+					description:"",
+					weatherid:0,
+				},
 				icon: "",
 				background: "",
 				lat: "INIT",
@@ -35,7 +40,7 @@ export default class weatherComponent extends Component{
 
 // a call to fetch weather data via openweathermap
 	fetchWeatherData = () => {
-		console.log("Fetch Weather");
+		console.log("Fetch weather started");
 		// API URL with a structure of : 
 		const url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.long}&units=${this.state.units}&appid=174eb67985ff52097d96a14736dc0014`;
 		$.ajax({
@@ -44,8 +49,6 @@ export default class weatherComponent extends Component{
 			success : this.parseResponse,
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
-		// // once the data grabbed, hide the button
-		this.setState({ display: false });
 	}
 
 	fetchLocation(){
@@ -67,9 +70,11 @@ export default class weatherComponent extends Component{
 				 () => this.fetchWeatherData());
 			console.log("Location not found");
 		}
+
+		this.forceUpdate();
 	}
 	
-	componentDidMount(){
+	componentWillMount(){
 		this.fetchLocation();
 	}
 
@@ -124,7 +129,7 @@ export default class weatherComponent extends Component{
 			icon,
 			background: weatherkey.findBackgroundById(weatherid)
 		});
-
+		this.forceUpdate();
 		//console.log(parsed_json);
 	}
 }

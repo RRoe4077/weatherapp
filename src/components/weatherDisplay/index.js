@@ -35,8 +35,7 @@ export default class weatherComponent extends Component{
 
 // a call to fetch weather data via openweathermap
 	fetchWeatherData = () => {
-		console.log(this.state.lat);
-		console.log(this.state.long);
+		console.log("Fetch Weather");
 		// API URL with a structure of : 
 		const url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.long}&units=${this.state.units}&appid=174eb67985ff52097d96a14736dc0014`;
 		$.ajax({
@@ -47,7 +46,6 @@ export default class weatherComponent extends Component{
 		})
 		// // once the data grabbed, hide the button
 		this.setState({ display: false });
-		forceUpdate();
 	}
 
 	fetchLocation(){
@@ -60,7 +58,6 @@ export default class weatherComponent extends Component{
 				},
 				 () => this.fetchWeatherData());
 			});
-			console.log("Location found successfully");
 		}
 		else{
 			this.setState({

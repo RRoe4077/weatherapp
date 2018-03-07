@@ -32,7 +32,6 @@
 	font-weight: 300;	
 
 }
-
 .temperature {
 	flex: 2;
 	margin-top: 0;
@@ -51,10 +50,26 @@
 }
 
 .conditions{
-
 	font-family: 'Helvetica Neue', arial, sans-serif;
 	font-weight: 320;
 	font-size: 23px;
-	
+}
+.icon{
+	padding-top:0.3rem;
+	padding-bottom:1rem;
+}
+.suncolumn {
+    float: left;
+	width: 50%;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 250;
 
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+	clear: both;
+	margin-bottom: 1rem;
 }

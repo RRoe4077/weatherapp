@@ -16,6 +16,8 @@ import weatherkey from '../../weatherKey';
 
 import FutureWeather from '../future_weather';
 
+import moment from 'moment';
+
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -72,6 +74,10 @@ export default class Iphone extends Component {
 					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>
 					
 				</div>
+				<div class="row">
+					<div class={ style.suncolumn }>{ weather.sunrise }</div>
+					<div class={ style.suncolumn }>{ weather.sunset }</div>
+				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>
 					
@@ -93,6 +99,8 @@ export default class Iphone extends Component {
 		let icon = weather[0].icon;
 		let windspeed = parsed_json.wind.speed;
 		let winddir = parsed_json.wind.deg;
+		let sunrise = moment.unix(parsed_json.sys.sunrise).format('LT');
+		let sunset = moment.unix(parsed_json.sys.sunset).format('LT');
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {
@@ -101,7 +109,9 @@ export default class Iphone extends Component {
 				condition,
 				windspeed,
 				description,
-				weatherid
+				weatherid,
+				sunrise,
+				sunset
 			},
 			icon,
 			background: weatherkey.findBackgroundById(weatherid)

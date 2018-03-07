@@ -83,12 +83,12 @@ export default class weatherComponent extends Component{
 	render() {
 		const weather = this.state.weather;
 		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;
+		console.log("Render run");
 		// display all weather data
 		return (
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
 				<div class={ style.header }>
 					<div class={ style.city }>{ weather.location }</div>
-				
 					<span>{ weather.temp_c }°C</span>
 					<div class={ style.conditions }>Wind: { weather.windspeed } m/s</div>
 					<div class={ style.conditions }>{ weather.condition } </div>
@@ -129,7 +129,6 @@ export default class weatherComponent extends Component{
 			icon,
 			background: weatherkey.findBackgroundById(weatherid)
 		});
-		this.forceUpdate();
 		//console.log(parsed_json);
 	}
 }

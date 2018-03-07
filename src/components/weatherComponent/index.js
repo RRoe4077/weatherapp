@@ -96,6 +96,8 @@ export default class weatherComponent extends Component{
 				<div class= { style_iphone.container }>
 					
 				</div>
+				<Status />
+				<FutureWeather />
 			</div>
 		);
 	}

@@ -19,7 +19,8 @@ export default class Geolocator extends Component{
 				this.setState({
 					lat: position.coords.latitude,
 					long: position.coords.longitude
-				});
+				}
+					);
 			});
 		}
 		else{

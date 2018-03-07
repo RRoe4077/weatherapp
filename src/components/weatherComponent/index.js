@@ -12,6 +12,8 @@ import style_iphone from '../button/style_iphone';
 
 import weatherkey from '../../weatherKey';
 
+import moment from 'moment';
+
 export default class weatherComponent extends Component{
 
 	constructor(props){
@@ -76,8 +78,6 @@ export default class weatherComponent extends Component{
 		this.fetchLocation();
 	}
 
-
-
 	render() {
 		const weather = this.state.weather;
 		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;
@@ -90,7 +90,6 @@ export default class weatherComponent extends Component{
 					<div class={ style.conditions }>Wind: { weather.windspeed } m/s</div>
 					<div class={ style.conditions }>{ weather.condition } </div>
 					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>
-					
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>
@@ -113,6 +112,8 @@ export default class weatherComponent extends Component{
 		let icon = weather[0].icon;
 		let windspeed = parsed_json.wind.speed;
 		let winddir = parsed_json.wind.deg;
+		let sunrise = moment.unix(parsed_json.sys.sunrise).format('dddd');
+		let sunset = moment.unix(parsed_json.sys.sunset).format('dddd');
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {
@@ -121,7 +122,9 @@ export default class weatherComponent extends Component{
 				condition,
 				windspeed,
 				description,
-				weatherid
+				weatherid,
+				sunrise,
+				sunset
 			},
 			icon,
 			background: weatherkey.findBackgroundById(weatherid)

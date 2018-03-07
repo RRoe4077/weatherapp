@@ -10,21 +10,26 @@ export default class Status extends Component{
 	constructor(props)
 	{
 		super(props);
-		this.state.statusText = "Default";
+		this.state.statusText = "NO DATA";
 		this.state.safe = true;
 		this.state.statusBarColour = '#0F0';
 	}
 
 	updateStatus() {
-		var w = this.props.weather;
 		console.log("Running");
-		if(w.visibility>0)
+		if(this.props.weather.windspeed>0)
 		{
 			this.setState({
-				displayContainer:"style.containerNoFly",
+				statusBarColour:"#000",
 				statusText:"It worked"
-			});
+			},
+				() => this.verifyState());
 		}
+	}
+
+	verifyState() {
+		console.log("Verify State");
+		console.log(this.state.statusText);
 	}
 	
 	componentDidMount() {
@@ -34,7 +39,7 @@ export default class Status extends Component{
 	componentWillReceiveProps(nextProps) {
 		if(this.props!=nextProps)
 		{
-			this.updateStatus();
+			this.props = nextProps;
 		}
 	}
 
@@ -45,7 +50,6 @@ export default class Status extends Component{
 //Humidity
 
 	render(){
-		console.log(this.state.statusText);
 		return (
             <div className={ style.container } style={ {backgroundColor: this.state.statusBarColour, borderColor: this.state.statusBarColour} }>
                 <h1>{this.state.statusText}</h1>

@@ -63,7 +63,7 @@ export default class FutureWeather extends Component {
 				const conditionsIconSrc = `http://openweathermap.org/img/w/${day.icon}.png`;
 				return (
 					<div class={ style.weather }>
-						<div>{ moment().add(`${ index }`, "day").format('dddd') }</div>
+						<div>{ moment().add(`${ index }`, "day").format('ddd') }</div>
 						<span class={ tempStyles }>{ day.temp_c }°C</span>
 						<div>{ day.windspeed } m/s</div>
 						<div>{ day.condition } </div>

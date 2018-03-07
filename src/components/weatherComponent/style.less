@@ -1,1 +1,87 @@
-@import '../iphone/style';
+@import '~style/helpers';
+
+.container { 
+	// display: flex;
+	flex-direction: column;
+	background-color: #514C4C;
+	color: #fff;
+	width: 414px;
+	height: 736px;
+	text-align: center;
+	padding-top: 30px;
+	margin: 0 auto;
+	font-size:120%;
+	line-height: 1.4;
+	letter-spacing: 3px;
+	
+
+}
+.header {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	text-align: right;
+	padding-right: 30px;
+	padding-bottom: 1.2rem;
+}
+.details {
+	flex: 4;
+}
+.city {
+	flex: 1;
+	font-size: 2.8em;
+	font-weight: 300;	
+	margin-bottom: -10px;
+
+}
+.temperature {
+	flex: 2;
+	margin-top: 0;
+	font-size: 2em;
+	font-weight: 300;
+	
+}
+.filled:after {
+	content: "°";
+	margin: 0 0 0 1rem;
+	font-size: 0.5em;
+	font-weight: 100;
+	display: inline-block;
+	padding-top: 10px;
+	vertical-align: top;
+}
+
+.conditions{
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 320;
+	font-size: 23px;
+}
+.temp{
+	
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 340;
+	font-size: 30px;
+	margin-top:0.8rem;
+}
+
+.icon{
+	padding-top:0.3rem;
+	padding-bottom:1rem;
+}
+
+.suncolumn {
+    float: left;
+	width: 50%;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 250;
+
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+	clear: both;
+	margin-bottom: 1rem;
+}
+
+

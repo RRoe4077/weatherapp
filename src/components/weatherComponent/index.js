@@ -113,13 +113,10 @@ export default class weatherComponent extends Component{
 		let icon = weather[0].icon;
 		let windspeed = parsed_json.wind.speed;
 		let winddir = parsed_json.wind.deg;
-<<<<<<< Updated upstream
-=======
 		let sunrise = moment.unix(parsed_json.sys.sunrise).format('dddd');
 		let sunset = moment.unix(parsed_json.sys.sunset).format('dddd');
 		let visibility = (parsed_json.visibility)/1000;
 		let humidity = parsed_json.main.humidity;
->>>>>>> Stashed changes
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {

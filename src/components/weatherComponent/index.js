@@ -16,7 +16,7 @@ import moment from 'moment';
 
 import "../../assets/icons/fontawesome-all";
 
-import ReactAnimatedWeather from 'react-animated-weather';
+//import ReactAnimatedWeather from 'react-animated-weather';
 
 
 
@@ -140,7 +140,7 @@ export default class weatherComponent extends Component{
 				description,
 				weatherid,
 				visibility,
-				humidity
+				humidity,
 				sunrise,
 				sunset
 			},

@@ -12,6 +12,14 @@ import style_iphone from '../button/style_iphone';
 
 import weatherkey from '../../weatherKey';
 
+import moment from 'moment';
+
+import "../../assets/icons/fontawesome-all";
+
+import ReactAnimatedWeather from 'react-animated-weather';
+
+
+
 export default class weatherComponent extends Component{
 
 	constructor(props){
@@ -27,6 +35,7 @@ export default class weatherComponent extends Component{
 					windspeed:"",
 					description:"",
 					weatherid:0,
+
 				},
 				icon: "",
 				background: "",
@@ -76,21 +85,25 @@ export default class weatherComponent extends Component{
 		this.fetchLocation();
 	}
 
-
-
 	render() {
 		const weather = this.state.weather;
 		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;
 		// display all weather data
 		return (
+			
+	
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
 				<div class={ style.header }>
-					<div class={ style.city }>{ weather.location }</div>
-					<span>{ weather.temp_c }°C</span>
+					<div class={ style.city }><i class="far fa-compass fa-xs" ></i> { weather.location }</div>
+					<div class={style.temperature}>{ weather.temp_c }°C</div>
 					<div class={ style.conditions }>Wind: { weather.windspeed } m/s</div>
 					<div class={ style.conditions }>{ weather.condition } </div>
 					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>
-					
+				</div>
+
+				<div class={style.row}> 
+					<div class={style.suncolumn}>{weather.sunrise}</div>
+					<div class={style.suncolumn}> {weather.sunset}</div>
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>
@@ -115,6 +128,8 @@ export default class weatherComponent extends Component{
 		let winddir = parsed_json.wind.deg;
 		let visibility = parsed_json.visibility;
 		let humidity = parsed_json.humidity;
+		let sunrise = moment.unix(parsed_json.sys.sunrise).format('LT');
+		let sunset = moment.unix(parsed_json.sys.sunset).format('LT');
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {
@@ -126,6 +141,8 @@ export default class weatherComponent extends Component{
 				weatherid,
 				visibility,
 				humidity
+				sunrise,
+				sunset
 			},
 			icon,
 			background: weatherkey.findBackgroundById(weatherid),

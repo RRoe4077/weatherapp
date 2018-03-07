@@ -19,6 +19,8 @@ import FutureWeather from '../future_weather';
 import moment from 'moment';
 
 
+import "../../assets/icons/fontawesome-all";
+
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -29,10 +31,15 @@ export default class Iphone extends Component {
 
 	// the main render method for the iphone component
 	render() {
+
+
 		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;// display all weather data
 		return (
+
+			
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
 				<WeatherComponent />
+				
 			</div>
 		);
 	}

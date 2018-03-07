@@ -2,6 +2,7 @@
 import { h, render, Component } from 'preact';
 // import stylesheets for ipad & button
 import style from './style';
+
 import style_iphone from '../button/style_iphone';
 // import jquery for API calls
 import $ from 'jquery';
@@ -63,7 +64,7 @@ export default class FutureWeather extends Component {
 				const conditionsIconSrc = `http://openweathermap.org/img/w/${day.icon}.png`;
 				return (
 					<div class={ style.weather }>
-						<div>{ moment().add(`${ index }`, "day").format('dddd') }</div>
+						<div style="font-weight: bold">{ moment().add(`${ index }`, "day").format('ddd') }</div>
 						<span class={ tempStyles }>{ day.temp_c }°C</span>
 						<div>{ day.windspeed } m/s</div>
 						<div>{ day.condition } </div>

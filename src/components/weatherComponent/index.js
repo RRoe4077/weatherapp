@@ -42,11 +42,11 @@ export default class weatherComponent extends Component{
 				lat: "INIT",
 				long: "INIT"
 			});
-			console.log("Constructor run");
+			//console.log("Constructor run");
 		}
 
 	fetchLocation(){
-		console.log("Fetch location Started");
+		//console.log("Fetch location Started");
 		if(navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(position => {
 				this.setState({
@@ -68,7 +68,7 @@ export default class weatherComponent extends Component{
 
 	// a call to fetch weather data via openweathermap
 	fetchWeatherData = () => {
-		console.log("Fetch weather started");
+		//console.log("Fetch weather started");
 		// API URL with a structure of : 
 		const url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.long}&units=${this.state.units}&appid=174eb67985ff52097d96a14736dc0014`;
 		$.ajax({
@@ -77,11 +77,11 @@ export default class weatherComponent extends Component{
 			success : this.parseResponse,
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
-		console.log("Finished");
+		//console.log("Finished");
 	}
 
 	componentDidMount(){
-		console.log("ComponentDidMount called");
+		//console.log("ComponentDidMount called");
 		this.fetchLocation();
 	}
 
@@ -110,7 +110,7 @@ export default class weatherComponent extends Component{
 				<div class= { style_iphone.container }>
 					
 				</div>
-				<Status />
+				<Status weather={this.state.weather} />
 				<FutureWeather />
 			</div>
 		);
@@ -127,6 +127,8 @@ export default class weatherComponent extends Component{
 		let icon = weather[0].icon;
 		let windspeed = parsed_json.wind.speed;
 		let winddir = parsed_json.wind.deg;
+		let visibility = parsed_json.visibility;
+		let humidity = parsed_json.humidity;
 		let sunrise = moment.unix(parsed_json.sys.sunrise).format('LT');
 		let sunset = moment.unix(parsed_json.sys.sunset).format('LT');
 		// set states for fields so they could be rendered later on
@@ -138,12 +140,14 @@ export default class weatherComponent extends Component{
 				windspeed,
 				description,
 				weatherid,
+				visibility,
+				humidity,
 				sunrise,
 				sunset
 			},
 			icon,
-			background: weatherkey.findBackgroundById(weatherid)
+			background: weatherkey.findBackgroundById(weatherid),
 		});
-		console.log(parsed_json);
+		//console.log(parsed_json);
 	}
 }

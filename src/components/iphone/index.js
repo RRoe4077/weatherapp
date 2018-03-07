@@ -16,7 +16,7 @@ import weatherkey from '../../weatherKey';
 
 import FutureWeather from '../future_weather';
 
-	
+import moment from 'moment';
 
 
 export default class Iphone extends Component {

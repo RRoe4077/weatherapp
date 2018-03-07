@@ -82,6 +82,9 @@
     "preact-router": "^2.0.0",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^0.14.3",
+    "react": "^16.2.0",
+    "react-burger-menu": "^2.3.0",
+    "react-dom": "^16.2.0",
     "serve": "^2.0.0"
   },
   "main": "webpack.config.babel.js",

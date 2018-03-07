@@ -53,7 +53,7 @@ export default class weatherComponent extends Component{
 				long: "NULL",
 			},
 				 () => this.fetchWeatherData());
-			console.log("Location not found");
+			console.warn("Location not found");
 		}
 	}
 
@@ -81,11 +81,9 @@ export default class weatherComponent extends Component{
 	render() {
 		const weather = this.state.weather;
 		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;
-		console.log("Render run");
 		// display all weather data
 		return (
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
-				<div>RenderWeather</div>
 				<div class={ style.header }>
 					<div class={ style.city }>{ weather.location }</div>
 					<span>{ weather.temp_c }°C</span>

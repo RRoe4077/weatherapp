@@ -8,7 +8,7 @@ import $ from 'jquery';
 // import the Button component
 import Button from '../button';
 
-import weatherComponent from '../weatherComponent';
+import WeatherComponent from '../weatherComponent';
 
 import Geolocator from "../location";
 
@@ -22,30 +22,14 @@ export default class Iphone extends Component {
 	// a constructor with initial set states
 	constructor(props){
 		super(props);
-		// temperature state
-		this.state.units="metric";
-		// button display state
-		this.setState({ display: true, weather: {
-			location: "London",
-			temp_c:"",
-			condition:"",
-			windspeed:"",
-			description:"",
-			weatherid:0,
-		},
-			icon: "",
-			background: ""
-		});
 	}
 
 	// the main render method for the iphone component
 	render() {
-		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;
-		// display all weather data
+		const conditionsIconSrc = `http://openweathermap.org/img/w/${this.state.icon}.png`;// display all weather data
 		return (
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
-				<weatherComponent />
-				<div><h1>Rendered</h1></div> 
+				<WeatherComponent />
 			</div>
 		);
 	}

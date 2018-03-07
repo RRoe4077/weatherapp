@@ -91,6 +91,11 @@ export default class weatherComponent extends Component{
 					<div class={ style.conditions }>{ weather.condition } </div>
 					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>
 				</div>
+
+				<div class={style.row}> 
+					<div class={style.suncolumn}> {weather.sunrise}</div>
+					<div class={style.suncolumn}> {weather.sunset}</div>
+				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }>
 					
@@ -112,8 +117,8 @@ export default class weatherComponent extends Component{
 		let icon = weather[0].icon;
 		let windspeed = parsed_json.wind.speed;
 		let winddir = parsed_json.wind.deg;
-		let sunrise = moment.unix(parsed_json.sys.sunrise).format('dddd');
-		let sunset = moment.unix(parsed_json.sys.sunset).format('dddd');
+		let sunrise = moment.unix(parsed_json.sys.sunrise).format('LT');
+		let sunset = moment.unix(parsed_json.sys.sunset).format('LT');
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {

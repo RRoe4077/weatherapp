@@ -95,7 +95,7 @@ export default class weatherComponent extends Component{
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
 				<div class={ style.header }>
 					<div class={ style.city }><i class="far fa-compass fa-xs" ></i> { weather.location }</div>
-					<span>{ weather.temp_c }°C</span>
+					<div class={style.temperature}>{ weather.temp_c }°C</div>
 					<div class={ style.conditions }>Wind: { weather.windspeed } m/s</div>
 					<div class={ style.conditions }>{ weather.condition } </div>
 					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>

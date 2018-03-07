@@ -7,12 +7,20 @@ import $ from 'jquery';
 
 export default class Status extends Component{
 
+	constructor(props)
+	{
+		super(props);
+		this.state.statusText = "Default";
+		this.state.displayContainer = "style.containerTest";
+	}
+
 	updateStatus() {
 		var w = this.props.weather;
+		console.log("Running");
 		if(w.visibility>0)
 		{
 			this.setState({
-				displayContainer:"style.containerTest",
+				displayContainer:"style.containerNoFly",
 				statusText:"It worked"
 			});
 		}
@@ -37,9 +45,10 @@ export default class Status extends Component{
 
 	render(){
 		//console.log(this.props.weather);
+		console.log(this.state.displayContainer);
 		return (
-            <div class={style.containerSafeToFly}>
-                <h1>{this.state.statusText}</h1>
+            <div className={this.state.displayContainer}>
+                <p>{this.state.statusText}</p>
             </div>
 		);
 	}

@@ -16,6 +16,8 @@ import moment from 'moment';
 
 import "../../assets/icons/fontawesome-all";
 
+import ReactAnimatedWeather from 'react-animated-weather';
+
 
 
 export default class weatherComponent extends Component{

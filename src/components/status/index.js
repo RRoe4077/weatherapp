@@ -11,7 +11,8 @@ export default class Status extends Component{
 	{
 		super(props);
 		this.state.statusText = "Default";
-		this.state.displayContainer = "style.containerTest";
+		this.state.safe = true;
+		this.state.statusBarColour = '#0F0';
 	}
 
 	updateStatus() {
@@ -44,11 +45,10 @@ export default class Status extends Component{
 //Humidity
 
 	render(){
-		//console.log(this.props.weather);
-		console.log(this.state.displayContainer);
+		console.log(this.state.statusText);
 		return (
-            <div className={this.state.displayContainer}>
-                <p>{this.state.statusText}</p>
+            <div className={ style.container } style={ {backgroundColor: this.state.statusBarColour, borderColor: this.state.statusBarColour} }>
+                <h1>{this.state.statusText}</h1>
             </div>
 		);
 	}

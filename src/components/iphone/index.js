@@ -45,8 +45,8 @@ export default class Iphone extends Component {
 		// display all weather data
 		return (
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
-				<weatherComponent />
 				<div><h1>Rendered</h1></div>
+				<weatherComponent />
 			</div>
 		);
 	}

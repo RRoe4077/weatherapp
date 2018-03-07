@@ -129,6 +129,6 @@ export default class weatherComponent extends Component{
 			icon,
 			background: weatherkey.findBackgroundById(weatherid)
 		});
-		//console.log(parsed_json);
+		console.log(parsed_json);
 	}
 }

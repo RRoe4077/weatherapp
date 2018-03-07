@@ -8,7 +8,7 @@ import $ from 'jquery';
 // import the Button component
 import Button from '../button';
 
-import weatherComponent from '../weatherDisplay';
+import weatherComponent from '../weatherComponent';
 
 import Geolocator from "../location";
 
@@ -24,7 +24,6 @@ export default class Iphone extends Component {
 		super(props);
 		// temperature state
 		this.state.units="metric";
-		this.wd = new weatherComponent();
 		// button display state
 		this.setState({ display: true, weather: {
 			location: "London",
@@ -45,8 +44,8 @@ export default class Iphone extends Component {
 		// display all weather data
 		return (
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
-				<div><h1>Rendered</h1></div>
 				<weatherComponent />
+				<div><h1>Rendered</h1></div> 
 			</div>
 		);
 	}

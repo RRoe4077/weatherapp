@@ -113,6 +113,8 @@ export default class weatherComponent extends Component{
 		let icon = weather[0].icon;
 		let windspeed = parsed_json.wind.speed;
 		let winddir = parsed_json.wind.deg;
+		let visibility = parsed_json.visibility;
+		let humidity = parsed_json.humidity;
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {
@@ -121,10 +123,12 @@ export default class weatherComponent extends Component{
 				condition,
 				windspeed,
 				description,
-				weatherid
+				weatherid,
+				visibility,
+				humidity
 			},
 			icon,
-			background: weatherkey.findBackgroundById(weatherid)
+			background: weatherkey.findBackgroundById(weatherid),
 		});
 		//console.log(parsed_json);
 	}

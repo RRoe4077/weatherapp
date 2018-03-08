@@ -27,6 +27,7 @@ export default class weatherComponent extends Component {
 				windspeed: 0,
 				description: "",
 				weatherid: 0,
+
 			},
 			icon: "",
 			background: "",
@@ -92,23 +93,31 @@ export default class weatherComponent extends Component {
 					<form className="form-inline">
 						<input className="form-control mr-sm-6" type="search" placeholder="Search Location" aria-label="Search" value={this.state.value} onChange={this.handleChange} />
 					</form>
-				</nav>
-				<div className={style.container} style={{ backgroundColor: this.state.background }}>
-					<div className={style.header}>
-						<div class={style.city}><i class="far fa-compass fa-xs" ></i> {weather.location}</div>
-						<span>{weather.temp_c}°C</span>
-						<div className={style.conditions}>Wind: {weather.windspeed} mph</div>
-						<div className={style.conditions}>{weather.condition} </div>
-						<div className={style.conditions}><img src={conditionsIconSrc} alt='current weather' /></div>
-					</div>
-					<div class={style.row}>
-						<div class={style.suncolumn}>{weather.sunrise}</div>
-						<div class={style.suncolumn}> {weather.sunset}</div>
-					</div>
+				</nav>			
+		<div className={style.container} style={{ backgroundColor: this.state.background }}>
+			
+		
+				<div className={style.header}>
+					<div class={ style.city }> <i class="fas fa-map-marker-alt"></i> { weather.location }  </div>
+					<div class={style.temperature}><i class="fas fa-thermometer-full"></i> { weather.temp_c }°C </div>
+					<div class={ style.conditions }><i class="fas fa-flag"></i> Wind: { weather.windspeed } m/s</div>
+					<div class={style.conditions}><i class="fas fa-eye"></i> Visibility: {weather.visibility} km</div>
+					<div class={style.conditions}><i class="fas fa-weight"></i> Humidity: {weather.humidity} %</div>
+					<div class={ style.conditions }><i class="fas fa-clipboard"></i> { weather.condition } </div>
+	
+				</div>	
+
+				
+					<div class={style.img }><img src={conditionsIconSrc} alt='Icon depicting current weather.' weight="50"  height="80" /></div>
+
+				<div class={style.row}>
+					<div class={style.suncolumn}>{weather.sunrise} <i class="fas fa-arrow-up"></i></div>
+					<div class={style.suncolumn}>{weather.sunset} <i class="fas fa-arrow-down"></i></div>
+				</div>
 					<div className={style.details}></div>
 					<div className={style_iphone.container}>
 
-					</div>
+			</div>
 					<Status weather={this.state.weather}/>
 					<FutureWeather location={this.state.weather.location}/>
 				</div>
@@ -131,6 +140,7 @@ export default class weatherComponent extends Component {
 		let sunset = moment.unix(parsed_json.sys.sunset).format('LT');
 		let visibility = (parsed_json.visibility) / 1000;
 		let humidity = parsed_json.main.humidity;
+		
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {

@@ -73,6 +73,7 @@ export default class FutureWeather extends Component {
 				{this.state.weather.map((day, index) => {
 				const conditionsIconSrc = `http://openweathermap.org/img/w/${day.icon}.png`;
 				return (
+					
 					<div class={ style.weather }>
 						<div style="font-weight: bold">{ moment().add(`${ index+1 }`, "day").format('ddd') }</div>
 						<span class={ tempStyles }>{ day.temp_c }°C</span>
@@ -81,6 +82,7 @@ export default class FutureWeather extends Component {
 						<div><img src={conditionsIconSrc} alt='Icon depicting current day.'/></div>
 					</div>
 				);
+			
 				})}
 				</div>
 				<div class={ style.details } />

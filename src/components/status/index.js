@@ -21,7 +21,7 @@ export default class Status extends Component{
 			//Check all conditions for safe to fly
 			if(w.windspeed < 25 && w.visibility > 1200 && w.temp_c < 35 && w.temp_c>5 && w.humidity < 75 && w.weatherid > 800){
 				this.setState({
-					statusBarColour:"#1E1",
+					statusBarColour:"#DAF7A6",
 					statusText:"Safe to fly"
 				},
 					() => this.verifyState());
@@ -31,7 +31,7 @@ export default class Status extends Component{
 			{
 				if(w.windspeed<50){
 					this.setState({
-						statusBarColour:"#EA0",
+						statusBarColour:"#FFC300",
 						statusText:"Caution: High winds"
 					},
 						() => this.verifyState());
@@ -39,8 +39,8 @@ export default class Status extends Component{
 				else{
 					this.setState(
 					{
-						statusBarColour:"#F00",
-						statusText:"NOT SAFE TO FLY"
+						statusBarColour:"#F67E7E",
+						statusText:"Not Safe To Fly"
 					},
 						() => this.verifyState());
 				}
@@ -49,7 +49,7 @@ export default class Status extends Component{
 			else if(w.visibility <= 1200){
 				if(w.visibility>800){
 					this.setState({
-						statusBarColour:"#EA0",
+						statusBarColour:"#FFC300",
 						statusText:"Caution: Low visibility"
 					},
 						() => this.verifyState());
@@ -57,8 +57,8 @@ export default class Status extends Component{
 				else{
 					this.setState(
 					{
-						statusBarColour:"#F00",
-						statusText:"NOT SAFE TO FLY"
+						statusBarColour:"#F67E7E",
+						statusText:"Not Safe to Fly"
 					},
 						() => this.verifyState());
 				}
@@ -67,7 +67,7 @@ export default class Status extends Component{
 			else if(w.temp_c<=5){
 				if(w.temp_c>0){
 					this.setState({
-						statusBarColour:"#EA0",
+						statusBarColour:"#FFC300",
 						statusText:"Caution: Low temperature"
 					},
 						() => this.verifyState());
@@ -75,8 +75,8 @@ export default class Status extends Component{
 				else{
 					this.setState(
 					{
-						statusBarColour:"#F00",
-						statusText:"NOT SAFE TO FLY"
+						statusBarColour:"#F67E7E",
+						statusText:"Not Safe to Fly"
 					},
 						() => this.verifyState());
 				}
@@ -85,7 +85,7 @@ export default class Status extends Component{
 			else if(w.temp_c>=35){
 				if(w.temp_c<40){
 					this.setState({
-						statusBarColour:"#EA0",
+						statusBarColour:"#FFC300",
 						statusText:"Caution: High temperature"
 					},
 						() => this.verifyState());
@@ -93,8 +93,8 @@ export default class Status extends Component{
 				else{
 					this.setState(
 					{
-						statusBarColour:"#F00",
-						statusText:"NOT SAFE TO FLY"
+						statusBarColour:"#F67E7E",
+						statusText:"Not Safe to Fly"
 					},
 						() => this.verifyState());
 				}
@@ -103,7 +103,7 @@ export default class Status extends Component{
 			else if(w.temp_c<=5){
 				if(w.temp_c>0){
 					this.setState({
-						statusBarColour:"#EA0",
+						statusBarColour:"#FFC300",
 						statusText:"Caution: Low temperature"
 					},
 						() => this.verifyState());
@@ -111,8 +111,8 @@ export default class Status extends Component{
 				else{
 					this.setState(
 					{
-						statusBarColour:"#F00",
-						statusText:"NOT SAFE TO FLY"
+						statusBarColour:"#F67E7E",
+						statusText:"Not Safe to Fly"
 					},
 						() => this.verifyState());
 				}
@@ -121,7 +121,7 @@ export default class Status extends Component{
 			else if(w.humidity>=75){
 				if(w.humidity<80){
 					this.setState({
-						statusBarColour:"#EA0",
+						statusBarColour:"#FFC300",
 						statusText:"Caution: High humidity"
 					},
 						() => this.verifyState());
@@ -129,8 +129,8 @@ export default class Status extends Component{
 				else{
 					this.setState(
 					{
-						statusBarColour:"#F00",
-						statusText:"NOT SAFE TO FLY"
+						statusBarColour:"#F67E7E",
+						statusText:"Not Safe to Fly"
 					},
 						() => this.verifyState());
 				}
@@ -139,7 +139,7 @@ export default class Status extends Component{
 			else if(w.weatherid<=5){
 				if(w.weatherid<750 && w.weatherid>700){
 					this.setState({
-						statusBarColour:"#EA0",
+						statusBarColour:"#FFC300",
 						statusText:"Caution: Inclement weather"
 					},
 						() => this.verifyState());
@@ -147,16 +147,16 @@ export default class Status extends Component{
 				else if(w.weatherid<800 && w.weatherid >750)
 				{
 					this.setState({
-						statusBarColour:"#F00",
-						statusText:"NATURAL DISASTER"
+						statusBarColour:"#F67E7E",
+						statusText:"Natural Disaster"
 					},
 						() => this.verifyState());
 				}
 				else{
 					this.setState(
 					{
-						statusBarColour:"#F00",
-						statusText:"NOT SAFE TO FLY: Precipitation"
+						statusBarColour:"#C70039",
+						statusText:"Not Safe to Fly: Precipitation"
 					},
 						() => this.verifyState());
 				}
@@ -192,9 +192,17 @@ export default class Status extends Component{
 	render(){
 		//this.verifyState();
 		return (
+		<div class="head">
             <div className={ style.container } style={ {backgroundColor: this.state.statusBarColour, borderColor: this.state.statusBarColour} }>
-                <h1>{this.state.statusText}</h1>
+                <a id="status">{this.state.statusText}</a>
+
+			
             </div>
+
+	<img src="../../../assets/icons/drone.png" alt="drone"/>
+			
+	</div>
+			
 		);
 	}
 }

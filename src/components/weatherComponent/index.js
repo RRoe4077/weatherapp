@@ -95,26 +95,34 @@ export default class weatherComponent extends Component {
 						<input className="form-control mr-sm-6" type="search" placeholder="Search Location" aria-label="Search" value={this.state.value} onChange={this.handleChange} />
 					</form>
 				</nav>
-				<div className={style.container} style={{ backgroundColor: this.state.background }}>
-					<div className={style.header}>
-					<div class={ style.city }><i class="fas fa-map-marker-alt"></i> { weather.location }</div>
-					<div class={style.temperature}><i class="fas fa-thermometer-full"></i> { weather.temp_c }°C</div>
+			
+		<div className={style.container} style={{ backgroundColor: this.state.background }}>
+			
+		
+				<div className={style.header}>
+					<div class={ style.city }> <i class="fas fa-map-marker-alt"></i> { weather.location }  </div>
+					<div class={style.temperature}><i class="fas fa-thermometer-full"></i> { weather.temp_c }°C </div>
 					<div class={ style.conditions }><i class="fas fa-flag"></i> Wind: { weather.windspeed } m/s</div>
 					<div class={ style.conditions }><i class="fas fa-clipboard"></i> { weather.condition } </div>
- 					<div class={ style.conditions }><img src={conditionsIconSrc} alt='Icon depicting current weather.'/></div>
-					</div>
-					<div class={style.row}>
+	
+				</div>	
+
+				
+					<div class={style.img }><img src={conditionsIconSrc} alt='Icon depicting current weather.' weight="50"  height="80" /></div>
+
+				<div class={style.row}>
 					<div class={style.suncolumn}>{weather.sunrise} <i class="fas fa-arrow-up"></i></div>
 					<div class={style.suncolumn}>{weather.sunset} <i class="fas fa-arrow-down"></i></div>
+				</div>
 
-					</div>
+
 					<div className={style.details}></div>
 					<div className={style_iphone.container}>
 
-					</div>
+			</div>
 					<Status weather={this.state.weather}/>
 					<FutureWeather />
-				</div>
+			</div>
 			</div>
 		);
 	}

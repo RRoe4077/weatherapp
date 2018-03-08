@@ -14,6 +14,8 @@ import weatherkey from '../../weatherKey';
 
 import moment from 'moment';
 
+import Button from 'react-button';
+
 export default class weatherComponent extends Component {
 
 	constructor(props) {
@@ -37,11 +39,12 @@ export default class weatherComponent extends Component {
 		};
 
 		this.handleChange = this.handleChange.bind(this);
+		this.fetchLocation = this.fetchLocation.bind(this);
 	}
 
 	handleChange(event) {
 		console.log("Fetch weather started");
-		this.fetchWeatherData(`q=${event.target.value}`);
+		this.fetchWeatherDataByLocation(`q=${event.target.value}`);
 	}
 
 	fetchLocation() {
@@ -52,7 +55,7 @@ export default class weatherComponent extends Component {
 					lat: position.coords.latitude,
 					long: position.coords.longitude
 				},
-					() => this.fetchWeatherData());
+					() => this.fetchWeatherDataByCoords());
 			});
 		}
 		else {
@@ -60,14 +63,26 @@ export default class weatherComponent extends Component {
 				lat: "NULL",
 				long: "NULL",
 			},
-				() => this.fetchWeatherData());
+				() => this.fetchWeatherDataByCoords());
 			console.warn("Location not found");
 		}
 	}
 
 	// a call to fetch weather data via openweathermap
-	fetchWeatherData = (search = `lat=${this.state.lat}&lon=${this.state.long}`) => {
+	fetchWeatherDataByCoords = () => {
+		var search = `lat=${this.state.lat}&lon=${this.state.long}`;
 		// API URL with a structure of : 
+		const url = `http://api.openweathermap.org/data/2.5/weather?${search}&units=metric&appid=174eb67985ff52097d96a14736dc0014`;
+		$.ajax({
+			url: url,
+			dataType: "jsonp",
+			success: this.parseResponse,
+			error: function (req, err) { console.log('API call failed ' + err); }
+		})
+	}
+
+	fetchWeatherDataByLocation = (search) => {
+		// API URL with a structure of :
 		const url = `http://api.openweathermap.org/data/2.5/weather?${search}&units=metric&appid=174eb67985ff52097d96a14736dc0014`;
 		$.ajax({
 			url: url,
@@ -90,9 +105,14 @@ export default class weatherComponent extends Component {
 			<div>
 				<nav className="navbar navbar-dark bg-dark justify-content-between">
 					<a className="navbar-brand">DroneSafe</a>
-					<form className="form-inline">
-						<input className="form-control mr-sm-6" type="search" placeholder="Search Location" aria-label="Search" value={this.state.value} onChange={this.handleChange} />
-					</form>
+						<Button 
+								id="locationReset" 
+								onClick={this.fetchLocation}
+								title="refresh"
+							/>
+						<form className="form-inline">
+							<input className="form-control mr-sm-6" type="search" placeholder="Search Location" aria-label="Search" value={this.state.value} onChange={this.handleChange} />
+						</form>
 				</nav>			
 		<div className={style.container} style={{ backgroundColor: this.state.background }}>
 			

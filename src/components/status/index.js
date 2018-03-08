@@ -9,11 +9,12 @@ export default class Status extends Component{
 	{
 		super(props);
 		this.state.statusText = "NO DATA";
-		this.state.safe = true;
-		this.state.statusBarColour = '#0F0';
+		this.state.safe = false;
+		this.state.statusBarColour = '#000';
 	}
 
 	updateStatus() {
+		//console.log("Updating status");
 		if(typeof this.state.weather !== 'undefined')
 		{
 			var w = this.state.weather;
@@ -164,6 +165,7 @@ export default class Status extends Component{
 	}
 
 	verifyState() {
+		console.log("Current Status");
 		console.log(this.state.statusText);
 	}
 	
@@ -188,7 +190,7 @@ export default class Status extends Component{
 //Humidity
 
 	render(){
-		//console.log(this.state.weather);
+		//this.verifyState();
 		return (
             <div className={ style.container } style={ {backgroundColor: this.state.statusBarColour, borderColor: this.state.statusBarColour} }>
                 <h1>{this.state.statusText}</h1>

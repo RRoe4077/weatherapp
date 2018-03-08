@@ -198,9 +198,9 @@ export default class Status extends Component{
 
 			
             </div>
-
-	<img src="../../../assets/icons/drone.png" alt="drone"/>
-			
+	<div class="drone">
+	<img src="../../../assets/icons/drone.png" alt="drone" width="150" height="150"/>
+	</div>		
 	</div>
 			
 		);

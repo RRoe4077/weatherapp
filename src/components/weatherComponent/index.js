@@ -66,7 +66,6 @@ export default class weatherComponent extends Component {
 
 	// a call to fetch weather data via openweathermap
 	fetchWeatherData = (search = `lat=${this.state.lat}&lon=${this.state.long}`) => {
-		console.log(this.state.units);
 		// API URL with a structure of : 
 		const url = `http://api.openweathermap.org/data/2.5/weather?${search}&units=metric&appid=174eb67985ff52097d96a14736dc0014`;
 		$.ajax({
@@ -75,7 +74,6 @@ export default class weatherComponent extends Component {
 			success: this.parseResponse,
 			error: function (req, err) { console.log('API call failed ' + err); }
 		})
-		//console.log("Finished");
 	}
 
 	componentDidMount() {
@@ -99,7 +97,7 @@ export default class weatherComponent extends Component {
 					<div className={style.header}>
 						<div class={style.city}><i class="far fa-compass fa-xs" ></i> {weather.location}</div>
 						<span>{weather.temp_c}°C</span>
-						<div className={style.conditions}>Wind: {weather.windspeed} m/s</div>
+						<div className={style.conditions}>Wind: {weather.windspeed} mph</div>
 						<div className={style.conditions}>{weather.condition} </div>
 						<div className={style.conditions}><img src={conditionsIconSrc} alt='current weather' /></div>
 					</div>
@@ -112,7 +110,7 @@ export default class weatherComponent extends Component {
 
 					</div>
 					<Status weather={this.state.weather}/>
-					<FutureWeather />
+					<FutureWeather location={this.state.weather.location}/>
 				</div>
 			</div>
 		);
@@ -127,7 +125,7 @@ export default class weatherComponent extends Component {
 		let description = weather[0].description;
 		let weatherid = weather[0].id;
 		let icon = weather[0].icon;
-		let windspeed = parsed_json.wind.speed;
+		let windspeed = Math.round((parsed_json.wind.speed*3.6)*0.675);
 		let winddir = parsed_json.wind.deg;
 		let sunrise = moment.unix(parsed_json.sys.sunrise).format('LT');
 		let sunset = moment.unix(parsed_json.sys.sunset).format('LT');

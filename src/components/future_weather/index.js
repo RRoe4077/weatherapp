@@ -23,22 +23,22 @@ export default class FutureWeather extends Component {
 	// a constructor with initial set states
 	constructor(props){
 		super(props);
-		// temperature state
-		this.state.units="metric";
-	
 		// button display state
 		this.setState({ 
 			display: true, 
+			location: "London",
 			weather: [],
 			icon: "",
-			background: ""
+			background: "",
+			searchLocation: ""
 		});
 	}
 
 	// a call to fetch weather data via openweathermap
 	fetchWeatherData = () => {
 		// API URL with a structure of : 
-		const url = `http://api.openweathermap.org/data/2.5/forecast?q=London,uk&units=${this.state.units}&cnt=40&appid=965550e9d53af22e17426db9af51d7b7`;
+		console.log(this.state.location)
+		const url = `http://api.openweathermap.org/data/2.5/forecast?q=${this.state.location}&units=metric&appid=965550e9d53af22e17426db9af51d7b7`;
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
@@ -51,11 +51,21 @@ export default class FutureWeather extends Component {
 	componentDidMount = () => {
 		this.fetchWeatherData();
 	}
+
+	componentWillReceiveProps(nextProps) {
+		if(this.props!=nextProps)
+		{
+			this.setState({
+				location: nextProps.location
+			});
+			this.fetchWeatherData();
+		}
+	}
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
         const weather = this.state.weather;
-        const tempStyles = `${style.temperature} ${style.filled}`;
+		const tempStyles = `${style.temperature} ${style.filled}`;
 		// display all weather data
 		return (
 			<div class={ style.container } style={ {backgroundColor: this.state.background} }>
@@ -64,7 +74,7 @@ export default class FutureWeather extends Component {
 				const conditionsIconSrc = `http://openweathermap.org/img/w/${day.icon}.png`;
 				return (
 					<div class={ style.weather }>
-						<div style="font-weight: bold">{ moment().add(`${ index }`, "day").format('ddd') }</div>
+						<div style="font-weight: bold">{ moment().add(`${ index+1 }`, "day").format('ddd') }</div>
 						<span class={ tempStyles }>{ day.temp_c }°C</span>
 						<div>{ day.windspeed } m/s</div>
 						<div>{ day.condition } </div>
@@ -80,7 +90,6 @@ export default class FutureWeather extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		var moment = require('moment');
 		let fiveday = parsed_json.list;
 		let weather ="";
 		let condition="";
@@ -90,7 +99,8 @@ export default class FutureWeather extends Component {
 		let windspeed = "";
 		let winddir ="";
 		let daysArr = [];
-		
+		console.log(fiveday.length);
+		console.log(fiveday[8].main.temp)
 		fiveday.map((day, index) => {
 			if (index % 8 === 0) {
 				daysArr.push({
@@ -109,5 +119,6 @@ export default class FutureWeather extends Component {
 			weather: daysArr,
 			icon
 		});
+		console.log(this.state.temp_c)
 	}
 }

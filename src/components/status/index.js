@@ -14,12 +14,14 @@ export default class Status extends Component{
 	}
 
 	updateStatus() {
-		//console.log("Updating status");
+		console.log("Updating status");
+
 		if(typeof this.state.weather !== 'undefined')
 		{
 			var w = this.state.weather;
+			console.log(this.state.weather.visibility);
 			//Check all conditions for safe to fly
-			if(w.windspeed < 25 && w.visibility > 1200 && w.temp_c < 35 && w.temp_c>5 && w.humidity < 75 && w.weatherid > 800){
+			if(w.windspeed < 15 && w.visibility > 1.2 && w.temp_c < 35 && w.temp_c>5 && w.humidity < 75 && w.weatherid > 800){
 				this.setState({
 					statusBarColour:"#DAF7A6",
 					statusText:"Safe to fly"
@@ -27,9 +29,9 @@ export default class Status extends Component{
 					() => this.verifyState());
 			}
 			//windspeed handler
-			else if(w.windspeed >= 25)
+			else if(w.windspeed >= 15)
 			{
-				if(w.windspeed<50){
+				if(w.windspeed<20){
 					this.setState({
 						statusBarColour:"#FFC300",
 						statusText:"Caution: High winds"
@@ -46,8 +48,8 @@ export default class Status extends Component{
 				}
 			}
 
-			else if(w.visibility <= 1200){
-				if(w.visibility>800){
+			else if(w.visibility <= 1.2){
+				if(w.visibility>0.8){
 					this.setState({
 						statusBarColour:"#FFC300",
 						statusText:"Caution: Low visibility"

@@ -101,8 +101,8 @@ export default class FutureWeather extends Component {
 		let windspeed = "";
 		let winddir ="";
 		let daysArr = [];
-		console.log(fiveday.length);
-		console.log(fiveday[8].main.temp)
+		//console.log(fiveday.length);
+		//console.log(fiveday[8].main.temp)
 		fiveday.map((day, index) => {
 			if (index % 8 === 0) {
 				daysArr.push({
@@ -121,6 +121,6 @@ export default class FutureWeather extends Component {
 			weather: daysArr,
 			icon
 		});
-		console.log(this.state.temp_c)
+		//console.log(this.state.temp_c)
 	}
 }

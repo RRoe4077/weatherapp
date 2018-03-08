@@ -167,8 +167,8 @@ export default class Status extends Component{
 	}
 
 	verifyState() {
-		console.log("Current Status");
-		console.log(this.state.statusText);
+		//console.log("Current Status");
+		//console.log(this.state.statusText);
 	}
 	
 	componentDidMount() {

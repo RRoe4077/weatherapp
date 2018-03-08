@@ -1,23 +1,41 @@
 @import '~style/helpers';
 @import '../iphone/style';
 
-.container {
-    padding: 1rem 0;
-    position: relative;
+
+
+.header{
+	width: 100%;
+	padding: 1rem 0;
+	position: center;
+	padding-left: 18px;
+	margin-right:60%;
+	margin-bottom: -30px;
 }
 
+
+
+.img:after{
+	padding-top:-30px;
+	margin-top:-50px;
+	content: "";
+    display: table;
+	clear: both;
+	float: rightx;
+	
+	
+	}
+
 .city {
-	margin-top:50px;
-	flex: 1;
-	font-size: 1.5em;
+	margin-top:0.3remx;
+	font-size: 1.8em;
 	font-weight: 400;	
-	margin-bottom:5px;
+	margin-bottom:10px;
 	font-family: 'Helvetica Neue', arial, sans-serif;
 
 }
 .temperature {
 	flex: 2;
-
+	margin-bottom:6px;
 	font-size: 1.4em;
 	font-weight: 320;
 	font-family: 'Helvetica Neue', arial, sans-serif;
@@ -37,13 +55,16 @@
 	font-family: 'Helvetica Neue', arial, sans-serif;
 	font-weight: 320;
 	font-size: 23px;
+	margin-top:0.5rem;
+	margin-bottom:0.5rem;
+
+	
 }
 
 
-.icon{
-	padding-top:0.3rem;
-	padding-bottom:4rem;
-}
+
+
+
 
 .suncolumn {
     float: left;
@@ -51,8 +72,9 @@
 	font-family: 'Helvetica Neue', arial, sans-serif;
 	font-weight: 400;
 	font-size: 17px;
-	margin-bottom: -20px;
+	margin-bottom: -10px;
 	letter-spacing: 2px;
+	
 
 }
 /* Clear floats after the columns */
@@ -60,7 +82,7 @@
     content: "";
     display: table;
 	clear: both;
-	
+
 }
 
 

@@ -39,6 +39,10 @@ export default class Geolocator extends Component{
                 <p>{ this.state.lat }</p>
                 <p>{ this.state.long }</p>
 
+				
+				
+		
+			
             </div>
 		);
 	}

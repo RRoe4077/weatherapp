@@ -111,7 +111,7 @@ export default class weatherComponent extends Component {
 					<div className={style_iphone.container}>
 
 					</div>
-					<Status />
+					<Status weather={this.state.weather}/>
 					<FutureWeather />
 				</div>
 			</div>

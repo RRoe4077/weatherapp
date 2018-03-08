@@ -105,7 +105,7 @@ export default class weatherComponent extends Component {
 					<div class={style.temperature}><i class="fas fa-thermometer-full"></i> { weather.temp_c }°C </div>
 					<div class={ style.conditions }><i class="fas fa-flag"></i> Wind: { weather.windspeed } m/s</div>
 					<div class={style.conditions}><i class="fas fa-eye"></i> Visibility: {weather.visibility} km</div>
-					<div class={style.conditions}><i class="fas fa-weight"></i> Humidity: {weather.humidity} </div>
+					<div class={style.conditions}><i class="fas fa-weight"></i> Humidity: {weather.humidity} %</div>
 					<div class={ style.conditions }><i class="fas fa-clipboard"></i> { weather.condition } </div>
 	
 				</div>	

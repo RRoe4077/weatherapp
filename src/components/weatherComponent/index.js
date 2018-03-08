@@ -27,6 +27,7 @@ export default class weatherComponent extends Component {
 				windspeed: 0,
 				description: "",
 				weatherid: 0,
+
 			},
 			icon: "",
 			background: "",
@@ -103,6 +104,8 @@ export default class weatherComponent extends Component {
 					<div class={ style.city }> <i class="fas fa-map-marker-alt"></i> { weather.location }  </div>
 					<div class={style.temperature}><i class="fas fa-thermometer-full"></i> { weather.temp_c }°C </div>
 					<div class={ style.conditions }><i class="fas fa-flag"></i> Wind: { weather.windspeed } m/s</div>
+					<div class={style.conditions}><i class="fas fa-eye"></i> Visibility: {weather.visibility} km</div>
+					<div class={style.conditions}><i class="fas fa-weight"></i> Humidity: {weather.humidity} </div>
 					<div class={ style.conditions }><i class="fas fa-clipboard"></i> { weather.condition } </div>
 	
 				</div>	
@@ -142,6 +145,7 @@ export default class weatherComponent extends Component {
 		let sunset = moment.unix(parsed_json.sys.sunset).format('LT');
 		let visibility = (parsed_json.visibility) / 1000;
 		let humidity = parsed_json.main.humidity;
+		
 		// set states for fields so they could be rendered later on
 		this.setState({
 			weather: {

@@ -21,6 +21,7 @@ export default class weatherComponent extends Component {
 	constructor(props) {
 		super(props);
 		// button display state
+		// Sets defaults for app if weather API is not available
 		this.state = {
 			weather: {
 				location: "No Location Found",
@@ -42,11 +43,12 @@ export default class weatherComponent extends Component {
 		this.fetchLocation = this.fetchLocation.bind(this);
 	}
 
+	//Handles user search event
 	handleChange(event) {
-		console.log("Fetch weather started");
 		this.fetchWeatherDataByLocation(`q=${event.target.value}`);
 	}
 
+	//Fetches location using navigator module: set states with location coordinates
 	fetchLocation() {
 		console.log("Fetch location Started");
 		if (navigator.geolocation) {
@@ -68,7 +70,7 @@ export default class weatherComponent extends Component {
 		}
 	}
 
-	// a call to fetch weather data via openweathermap
+	// a call to fetch weather data via openweathermap using geographic coordinates
 	fetchWeatherDataByCoords = () => {
 		var search = `lat=${this.state.lat}&lon=${this.state.long}`;
 		// API URL with a structure of : 
@@ -81,6 +83,7 @@ export default class weatherComponent extends Component {
 		})
 	}
 
+	// a call to fetch weather data via openweathermap using town names
 	fetchWeatherDataByLocation = (search) => {
 		// API URL with a structure of :
 		const url = `http://api.openweathermap.org/data/2.5/weather?${search}&units=metric&appid=174eb67985ff52097d96a14736dc0014`;
@@ -92,8 +95,9 @@ export default class weatherComponent extends Component {
 		})
 	}
 
+	//Runs after first mount. Then executes fetch location
 	componentDidMount() {
-		console.log("ComponentDidMount called");
+		//console.log("ComponentDidMount called");
 		this.fetchLocation();
 	}
 
@@ -145,6 +149,7 @@ export default class weatherComponent extends Component {
 		);
 	}
 
+	//Parses response from API call
 	parseResponse = (parsed_json) => {
 		//console.log(JSON.stringify(parsed_json));
 		let location = parsed_json.name;

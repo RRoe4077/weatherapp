@@ -109,11 +109,14 @@ export default class weatherComponent extends Component {
 			<div>
 				<nav className="navbar navbar-dark bg-dark justify-content-between">
 					<a className="navbar-brand">DroneSafe</a>
-						<Button 
+						<button  
 								id="locationReset" 
 								onClick={this.fetchLocation}
 								title="refresh"
-							/>
+							
+							>
+							<i class="fas fa-sync-alt"></i>
+							</button>
 						<form className="form-inline">
 							<input className="form-control mr-sm-6" type="search" placeholder="Search Location" aria-label="Search" value={this.state.value} onChange={this.handleChange} />
 						</form>
@@ -122,11 +125,11 @@ export default class weatherComponent extends Component {
 			
 		
 				<div className={style.header}>
-					<div class={ style.city }> <i class="fas fa-map-marker-alt"></i> { weather.location }  </div>
+					<div class={ style.city } > <i class="fas fa-map-marker-alt"></i> { weather.location }  </div>
 					<div class={style.temperature}><i class="fas fa-thermometer-full"></i> { weather.temp_c }°C </div>
-					<div class={ style.conditions }><i class="fas fa-flag"></i> Wind: { weather.windspeed } mph</div>
-					<div class={style.conditions}><i class="fas fa-eye"></i> Visibility: {weather.visibility} km</div>
-					<div class={style.conditions}><i class="fas fa-weight"></i> Humidity: {weather.humidity} %</div>
+					<div class={ style.conditions }><i class="fas fa-flag"></i>  Wind: { weather.windspeed } mph</div>
+					<div class={style.conditions}><i class="fas fa-eye"></i>  Visibility: {weather.visibility} km</div>
+					<div class={style.conditions}><i class="fas fa-weight"></i>  Humidity: {weather.humidity} %</div>
 					<div class={ style.conditions }><i class="fas fa-clipboard"></i> { weather.condition } </div>
 	
 				</div>	

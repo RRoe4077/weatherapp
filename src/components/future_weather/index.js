@@ -45,13 +45,14 @@ export default class FutureWeather extends Component {
 			success : this.parseResponse,
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
-		// // once the data grabbed, hide the button
-		this.setState({ display: false });
 	}
+
+	//Runs once component completes first render
 	componentDidMount = () => {
 		this.fetchWeatherData();
 	}
 
+	//Triggers on receiving new location from parent
 	componentWillReceiveProps(nextProps) {
 		if(this.props!=nextProps)
 		{
@@ -61,7 +62,8 @@ export default class FutureWeather extends Component {
 			this.fetchWeatherData();
 		}
 	}
-	// the main render method for the iphone component
+
+	
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
         const weather = this.state.weather;

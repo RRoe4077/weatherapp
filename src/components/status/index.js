@@ -8,6 +8,8 @@ export default class Status extends Component{
 	constructor(props)
 	{
 		super(props);
+
+		//Set defaults for if no data is received
 		this.state.statusText = "NO DATA";
 		this.state.safe = false;
 		this.state.statusBarColour = '#000';
@@ -25,8 +27,7 @@ export default class Status extends Component{
 				this.setState({
 					statusBarColour:"#DAF7A6",
 					statusText:"Safe to fly"
-				},
-					() => this.verifyState());
+				});
 			}
 			//windspeed handler
 			else if(w.windspeed >= 15)
@@ -35,140 +36,109 @@ export default class Status extends Component{
 					this.setState({
 						statusBarColour:"#FFC300",
 						statusText:"Caution: High winds"
-					},
-						() => this.verifyState());
+					});
 				}
 				else{
 					this.setState(
 					{
 						statusBarColour:"#F67E7E",
 						statusText:"Not Safe To Fly"
-					},
-						() => this.verifyState());
+					});
 				}
 			}
 
+			//Visibility condition checker
 			else if(w.visibility <= 1.2){
 				if(w.visibility>0.8){
 					this.setState({
 						statusBarColour:"#FFC300",
 						statusText:"Caution: Low visibility"
-					},
-						() => this.verifyState());
+					});
 				}
 				else{
 					this.setState(
 					{
 						statusBarColour:"#F67E7E",
 						statusText:"Not Safe to Fly"
-					},
-						() => this.verifyState());
+					});
 				}
 			}
 
+			//Temperature checker: Low
 			else if(w.temp_c<=5){
 				if(w.temp_c>0){
 					this.setState({
 						statusBarColour:"#FFC300",
 						statusText:"Caution: Low temperature"
-					},
-						() => this.verifyState());
+					});
 				}
 				else{
 					this.setState(
 					{
 						statusBarColour:"#F67E7E",
 						statusText:"Not Safe to Fly"
-					},
-						() => this.verifyState());
+					});
 				}
 			}
 
+			//Temperature checker: High
 			else if(w.temp_c>=35){
 				if(w.temp_c<40){
 					this.setState({
 						statusBarColour:"#FFC300",
 						statusText:"Caution: High temperature"
-					},
-						() => this.verifyState());
+					});
 				}
 				else{
 					this.setState(
 					{
 						statusBarColour:"#F67E7E",
 						statusText:"Not Safe to Fly"
-					},
-						() => this.verifyState());
+					});
 				}
 			}
 
-			else if(w.temp_c<=5){
-				if(w.temp_c>0){
-					this.setState({
-						statusBarColour:"#FFC300",
-						statusText:"Caution: Low temperature"
-					},
-						() => this.verifyState());
-				}
-				else{
-					this.setState(
-					{
-						statusBarColour:"#F67E7E",
-						statusText:"Not Safe to Fly"
-					},
-						() => this.verifyState());
-				}
-			}
-
+			//Humidity checker
 			else if(w.humidity>=75){
 				if(w.humidity<80){
 					this.setState({
 						statusBarColour:"#FFC300",
 						statusText:"Caution: High humidity"
-					},
-						() => this.verifyState());
+					});
 				}
 				else{
 					this.setState(
 					{
 						statusBarColour:"#F67E7E",
 						statusText:"Not Safe to Fly"
-					},
-						() => this.verifyState());
+					});
 				}
 			}
 
+			//Checking for rain/other dangerous weather conditions
 			else if(w.weatherid<=5){
 				if(w.weatherid<750 && w.weatherid>700){
 					this.setState({
 						statusBarColour:"#FFC300",
 						statusText:"Caution: Inclement weather"
-					},
-						() => this.verifyState());
+					});
 				}
 				else if(w.weatherid<800 && w.weatherid >750)
 				{
 					this.setState({
 						statusBarColour:"#F67E7E",
 						statusText:"Natural Disaster"
-					},
-						() => this.verifyState());
+					});
 				}
 				else{
 					this.setState(
 					{
 						statusBarColour:"#C70039",
-						statusText:"Not Safe to Fly: Precipitation"
-					},
-						() => this.verifyState());
+						statusText:"Not Safe to Fly"
+					});
 				}
 			}
 		}
-	}
-
-	verifyState() {
-		//console.log("Current Status");
-		//console.log(this.state.statusText);
 	}
 	
 	componentDidMount() {

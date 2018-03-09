@@ -10,7 +10,7 @@ const findBackgroundById =(weatherId) => {
     if (weatherId < 782 && weatherId > 699) 
         return "#BBBBB5";
     if (weatherId < 805 && weatherId > 800)
-        return "#BCE4E1";
+        return "#9EBEBC";
     if (weatherId == 800)
         return "#B1EAE9";
 }
